@@ -241,7 +241,9 @@ func (s *LogStore) PutLogs(lg *LogGroup) (err error) {
 		}
 		outLen = len(out)
 	}
-
+	if s.project.Aliuid != "" {
+		h["x-log-resourceowneraccount"] = s.project.Aliuid
+	}
 	uri := fmt.Sprintf("/logstores/%v", s.Name)
 	r, err := request(s.project, "POST", uri, h, out[:outLen])
 	if err != nil {
