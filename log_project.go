@@ -41,6 +41,7 @@ type LogProject struct {
 	AccessKeyID     string
 	AccessKeySecret string
 	SecurityToken   string
+	Aliuid          string
 	UsingHTTP       bool   // default https
 	UserAgent       string // default defaultLogUserAgent
 	AuthVersion     AuthVersionType
@@ -60,6 +61,12 @@ func NewLogProject(name, endpoint, accessKeyID, accessKeySecret string) (p *LogP
 		retryTimeout:    defaultRetryTimeout,
 	}
 	p.parseEndpoint()
+	return p, nil
+}
+
+// WithAliuid add aliuid parameter
+func (p *LogProject) WithAliuid(aliuid string) (*LogProject, error) {
+	p.Aliuid = aliuid
 	return p, nil
 }
 

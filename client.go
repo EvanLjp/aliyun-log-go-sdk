@@ -99,6 +99,7 @@ type Client struct {
 	AccessKeyID     string
 	AccessKeySecret string
 	SecurityToken   string
+	Aliuid          string
 	UserAgent       string // default defaultLogUserAgent
 	RequestTimeOut  time.Duration
 	RetryTimeOut    time.Duration
@@ -121,6 +122,7 @@ func convertLocked(c *Client, projName string) *LogProject {
 	p.UserAgent = c.UserAgent
 	p.AuthVersion = c.AuthVersion
 	p.Region = c.Region
+	p.Aliuid = c.Aliuid
 	if c.HTTPClient != nil {
 		p.httpClient = c.HTTPClient
 	}

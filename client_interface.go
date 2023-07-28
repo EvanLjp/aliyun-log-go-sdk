@@ -15,6 +15,17 @@ func CreateNormalInterface(endpoint, accessKeyID, accessKeySecret, securityToken
 	}
 }
 
+// CreateNormalInterfaceWithAliuid with aliuid header
+func CreateNormalInterfaceWithAliuid(endpoint, accessKeyID, accessKeySecret, securityToken, aliuid string) ClientInterface {
+	return &Client{
+		Endpoint:        endpoint,
+		AccessKeyID:     accessKeyID,
+		AccessKeySecret: accessKeySecret,
+		SecurityToken:   securityToken,
+		Aliuid:          aliuid,
+	}
+}
+
 type UpdateTokenFunction func() (accessKeyID, accessKeySecret, securityToken string, expireTime time.Time, err error)
 
 // CreateTokenAutoUpdateClient crate a TokenAutoUpdateClient
