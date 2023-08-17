@@ -77,6 +77,8 @@ func (c *Client) request(project, method, uri string, headers map[string]string,
 	if authVersion == AuthV4 {
 		headers[HTTPHeaderLogDate] = dateTimeISO8601()
 		signer = NewSignerV4(accessKeyID, accessKeySecret, region)
+	} else if authVersion == AuthV0 {
+		signer = NewSignerV0()
 	} else {
 		headers[HTTPHeaderDate] = nowRFC1123()
 		signer = NewSignerV1(accessKeyID, accessKeySecret)
