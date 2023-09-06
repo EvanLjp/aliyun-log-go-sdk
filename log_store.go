@@ -311,7 +311,7 @@ func (s *LogStore) PutLogs(lg *LogGroup) (err error) {
 	}
 	defer r.Body.Close()
 	body, _ = ioutil.ReadAll(r.Body)
-	fmt.Printf("%v  ==== %s\n", r.Header, string(body))
+	fmt.Printf("%d=====%v  ==== %s  ===\n", r.StatusCode, r.Header, string(body))
 	if r.StatusCode != http.StatusOK {
 		err := new(Error)
 		if jErr := json.Unmarshal(body, err); jErr != nil {
